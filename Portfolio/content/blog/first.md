@@ -47,7 +47,7 @@ Todo list:
 Tables:
 | Name | Surname |
 |--|--|
-| Piotr | Jura |
+| Zack | Thallas |
 
 ```html
 <html>
