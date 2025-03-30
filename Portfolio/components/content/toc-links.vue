@@ -2,29 +2,40 @@
   <ul>
     <li v-for="link in links" :key="link.id">
       <NuxtLink
-        :class="[{ 'ml-4': level }]"
         :to="{ path: route.path, hash: `#${link.id}` }"
-        >{{ link.text }}</NuxtLink
+        :class="[
+          'block transition-colors',
+          { 'text-blue-600 font-semibold': link.id === activeId },
+        ]"
+        :style="{ marginLeft: `${level * 1}rem` }"
       >
-      <TocLinks :links="link.children" :level="level + 1" />
+        {{ link.text }}
+      </NuxtLink>
+      <TocLinks
+        v-if="link.children?.length"
+        :links="link.children"
+        :level="level + 1"
+        :active-id="activeId"
+      />
     </li>
   </ul>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { useRoute } from "vue-router";
 import type { TocLink } from "@nuxt/content";
-
-const route = useRoute();
 
 withDefaults(
   defineProps<{
     links: TocLink[] | undefined;
     level?: number;
+    activeId?: string | null;
   }>(),
   {
     level: 0,
+    activeId: null,
   }
 );
-</script>
 
-<style></style>
+const route = useRoute();
+</script>

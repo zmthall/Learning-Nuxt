@@ -16,6 +16,7 @@ export default defineContentConfig({
         toc: z.boolean().optional(),
         displayYear: z.boolean().optional(),
         icon: z.string().optional(),
+        id: z.string().optional(),
         lang: z.string().optional(),
         ogImage: z.string().optional(),
         twitterImage: z.string().optional(),

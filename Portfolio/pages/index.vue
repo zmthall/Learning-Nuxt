@@ -1,20 +1,21 @@
 <template>
-  <div>index</div>
+  <div class="prose dark:prose-invert max-w-none">
+    <ContentRenderer v-if="homePage" :value="homePage" />
+  </div>
 </template>
 
 <script setup>
 defineOptions({
-  name: "IndexPage",
+  name: "HomePage",
 });
 
-// useSeoMeta({
-//   title: "Main Page",
-//   description: "This is the main page",
-//   ogTitle: "Main Page",
-//   ogDescription: "This is the main page",
-// });
+const { data: homePage } = await useAsyncData("home", () =>
+  queryCollection("page")
+    .path("/") // ✅ don't include .md
+    .first()
+);
 
 useHead({
-  title: "Main Page",
+  title: "Home Page",
 });
 </script>

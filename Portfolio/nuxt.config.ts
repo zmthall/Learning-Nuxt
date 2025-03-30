@@ -6,6 +6,8 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
+    "@nuxtjs/robots",
+    "@nuxtjs/sitemap",
     "@nuxt/content",
   ],
   colorMode: {
@@ -22,6 +24,26 @@ export default defineNuxtConfig({
           },
         },
       },
+    },
+  },
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+  },
+  site: {
+    url: "https://example.com",
+    name: "My Awesome Website",
+  },
+  sitemap: {
+    xslTips: false,
+    sources: ["/api/__sitemap__/blog"],
+    autoLastmod: true,
+  },
+  nitro: {
+    prerender: {
+      routes: ["/sitemap.xml"],
     },
   },
 });
