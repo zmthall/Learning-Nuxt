@@ -40,6 +40,10 @@ export default defineNuxtConfig({
     xslTips: false,
     sources: ["/api/__sitemap__/blog"],
     autoLastmod: true,
+    exclude: [
+      "/__nuxt_content/**", // ⛔ Exclude all __nuxt_content internal routes
+      "**/sql_dump", // ⛔ Exclude all sql_dump pages]
+    ],
   },
   nitro: {
     prerender: {
