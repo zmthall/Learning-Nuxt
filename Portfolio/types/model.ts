@@ -1,3 +1,5 @@
+export type Mode = "system" | "light" | "dark";
+
 export interface GitHubRepo {
   id: string | number;
   name: string;
@@ -8,5 +10,3 @@ export interface GitHubRepo {
   stargazers_count: number;
   topics: string[];
 }
-
-export type Mode = "system" | "light" | "dark";

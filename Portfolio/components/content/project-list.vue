@@ -1,28 +1,30 @@
 <template>
-  <section v-if="isSuccessful">
-    <ul class="grid grid-cols-1 gap-4">
-      <li
-        v-for="repo in filteredRepos"
-        :key="repo.id"
-        class="border border-gray-200 rounded-sm p-4 hover:bg-gray-100 font-mono"
-      >
-        <a :href="repo.html_url" target="_blank" class="">
-          <div class="flex items-start flex-col">
-            <div class="font-semibold">
-              {{ repo.name }}
+  <div class="not-prose">
+    <section v-if="isSuccessful">
+      <ul class="grid grid-cols-1 gap-4">
+        <li
+          v-for="repo in filteredRepos"
+          :key="repo.id"
+          class="border border-gray-200 rounded-sm p-4 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300 font-mono"
+        >
+          <a :href="repo.html_url" target="_blank" class="">
+            <div class="flex items-start flex-col">
+              <div class="font-semibold">
+                {{ repo.name }}
+              </div>
+              <div>{{ repo.description }}</div>
             </div>
-            <div>{{ repo.description }}</div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </section>
-  <section v-else-if="isError">Something went wrong... Try Again!</section>
-  <section v-else>Loading...</section>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section v-else-if="isError">Something went wrong... Try Again!</section>
+    <section v-else>Loading...</section>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import type { GitHubRepo } from "../types/model.js";
+import type { GitHubRepo } from "../../types/model.js";
 
 const username = "zmthall";
 const perPage = 100;
